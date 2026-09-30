@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+}
+
+body {
+  box-sizing: border-box;
+  background-color: rgb(51 52 53);
+  padding: 20px;
+  color: white;
+}
+
+button {
+  cursor: pointer;
+}

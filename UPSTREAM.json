@@ -1,0 +1,12 @@
+{
+  "ThemeSong": {
+    "url": "https://github.com/KristofferTroncoso/ThemeSong",
+    "commit": "6e827b15d1c17f6ebd60d0b767c5960fa37079c8",
+    "version": "1.3.4"
+  },
+  "Ambient light for YouTube": {
+    "url": "https://github.com/WesselKroos/youtube-ambilight",
+    "commit": "18d17188e5562e5ee913f005192d30c9a60be078",
+    "version": "2.38.17"
+  }
+}

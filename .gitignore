@@ -1,0 +1,8 @@
+**/node_modules/
+**/builds/
+**/dist/
+**/sourcemaps/
+**/.env.local
+/dist/
+/artifacts/
+/local/
