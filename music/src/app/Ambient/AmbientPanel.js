@@ -18,7 +18,7 @@ export default function AmbientPanel() {
   return (
     <section aria-label="Ambient light" css={css`
       padding: 10px; margin: 6px 0; border: 1px solid #ffffff25; border-radius: 8px;
-      font-size: 12px; min-width: 220px;
+      font-size: 12px; min-width: 0;
       label { display: flex; justify-content: space-between; align-items: center; margin: 9px 0; gap: 8px; }
       input { accent-color: #9aafff; }
       input[type=range] { display: block; width: 100%; margin: 4px 0 12px; }

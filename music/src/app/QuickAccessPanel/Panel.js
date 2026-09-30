@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { css } from "@emotion/react";
 import PanelPage from "./PanelPage";
 import Popover from "@mui/material/Popover";
@@ -15,6 +15,8 @@ function Panel() {
   const minutesLeft = useStore((state) => state.utilities.sleepTimer.minutesLeft);
   const quickAccessPanelIconPrefs = useStore((state) => state.piece.prefs["34637b81-0c1a-4982-b130-0ff9ac232e4d"]);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [paperElement, setPaperElement] = useState(null);
+  const popoverAction = useRef(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -26,6 +28,17 @@ function Panel() {
 
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
+
+  useEffect(() => {
+    if (!open || !paperElement) return;
+
+    // Native disclosures can resize the panel without re-rendering Popover.
+    const observer = new ResizeObserver(() => {
+      popoverAction.current?.updatePosition();
+    });
+    observer.observe(paperElement);
+    return () => observer.disconnect();
+  }, [open, paperElement]);
 
   return (
     <div id="Panel">
@@ -70,9 +83,16 @@ function Panel() {
       </button>
       <Popover
         id={id}
+        action={popoverAction}
         open={open}
         anchorEl={anchorEl}
         onClose={handleClose}
+        PaperProps={{
+          ref: setPaperElement,
+          role: "region",
+          "aria-label": "YTMusic Remastered settings",
+          tabIndex: 0,
+        }}
         anchorOrigin={{
           vertical: "top",
           horizontal: "left",
@@ -86,9 +106,13 @@ function Panel() {
           .MuiPaper-root {
             background-color: rgb(0 0 0 / 0) !important;
             width: 265px;
-            display: flex;
-            justify-content: end;
-            flex-direction: column;
+            max-width: calc(100vw - 32px);
+            max-height: calc(100dvh - 32px);
+            display: block;
+            overflow-y: auto;
+            overflow-x: hidden;
+            overscroll-behavior: contain;
+            scrollbar-width: thin;
             transition: none !important;
             border-radius: 9px;
             box-shadow: 0 0 20px rgb(0 0 0 / 15%);
