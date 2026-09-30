@@ -54,7 +54,7 @@ const options = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      STORE_URL: JSON.stringify("https://chrome.google.com/webstore/detail/bgfiegdbajagebogifobkhambpljbfmk"),
+      STORE_URL: JSON.stringify("https://github.com/mhykolCS/ytmusic-remastered"),
     }),
     new CleanWebpackPlugin({ verbose: false }),
     new webpack.ProgressPlugin(),

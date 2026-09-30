@@ -41,7 +41,7 @@ function Panel() {
             background-color: var(--ts-base-100-alpha-02-color, rgb(255 255 255 / 0.2));
           }
         `}
-        title="Open ThemeSong Quick Access Panel"
+        title="Open YTMusic Remastered controls"
         onClick={handleClick}
       >
         <Badge

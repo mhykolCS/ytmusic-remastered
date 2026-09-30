@@ -1,4 +1,3 @@
-import { executeContentScriptOnYouTubeMusicTabs } from "./scripts";
 import handleIconColor from "../Extension/IconColor/handleIconColor";
 
 function handleOnMessage(message, sender, sendResponse) {
@@ -7,17 +6,20 @@ function handleOnMessage(message, sender, sendResponse) {
     switch (message) {
       case "reset":
         console.log(`Resetting to defaults`);
-        chrome.storage.local.clear();
-        executeContentScriptOnYouTubeMusicTabs();
-        sendResponse("Reset to defaults");
-        window.location.reload();
-        break;
+        chrome.storage.local.remove([
+          "themePrefs", "visualizerPrefs", "popupPrefs", "extensionPrefs",
+          "piecePrefs", "utilitiesPrefs", "remasteredAmbientPrefs",
+        ]).then(() => {
+          chrome.tabs.query({ url: "https://music.youtube.com/*" }, (tabs) => {
+            for (const tab of tabs) chrome.tabs.reload(tab.id);
+          });
+          sendResponse("Reset Music settings to defaults");
+        });
+        return true;
 
       case "openSidePlayer":
-        chrome.tabs.query({}, (tabs) => {
-          console.log(tabs);
-          chrome.sidePanel.open({ windowId: tabs[0].windowId });
-          chrome.windows.update(tabs[0].windowId, { focused: true });
+        chrome.windows.getLastFocused((window) => {
+          chrome.sidePanel.open({ windowId: window.id });
         });
         break;
 

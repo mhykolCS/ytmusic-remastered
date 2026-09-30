@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import AmbientPanel from "../Ambient/AmbientPanel";
 
 import WelcomePanel from "./components/WelcomePanel";
 import SongPanel from "../Song/SongPanel/SongPanel";
@@ -55,6 +56,7 @@ function PanelPage() {
         {showNewUserNote && <WelcomePanel />}
         <SongPanel />
         <AppearancePanel />
+        <AmbientPanel />
         <VisualizerPanel />
         <UtilitiesPanel />
         {process.env.NODE_ENV === "development" && <DevToolsPanel />}

@@ -14,7 +14,7 @@ function SidePlayer() {
 
   function handlePlayPause(e) {
     console.log(e);
-    chrome.tabs.query({}, (tabs) => {
+    chrome.tabs.query({ url: "https://music.youtube.com/*" }, (tabs) => {
       let ytmTabs = tabs.filter((tab) => "url" in tab);
       console.log(ytmTabs);
 
@@ -23,7 +23,7 @@ function SidePlayer() {
   }
 
   function handleYTMclick() {
-    chrome.tabs.query({}, (tabs) => {
+    chrome.tabs.query({ url: "https://music.youtube.com/*" }, (tabs) => {
       let ytmTabs = tabs.filter((tab) => "url" in tab);
       console.log(ytmTabs);
       if (ytmTabs.length === 0) {

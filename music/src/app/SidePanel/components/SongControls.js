@@ -2,7 +2,7 @@ import { PiSkipBackFill, PiPlayPauseFill, PiSkipForwardFill, PiFastForwardFill, 
 
 function SongControls() {
   function handlePrevious() {
-    chrome.tabs.query({}, (tabs) => {
+    chrome.tabs.query({ url: "https://music.youtube.com/*" }, (tabs) => {
       let ytmTabs = tabs.filter((tab) => "url" in tab);
       console.log(ytmTabs);
       chrome.tabs.sendMessage(ytmTabs[0].id, { message: "previous-button" });
@@ -11,7 +11,7 @@ function SongControls() {
 
   function handlePlayPause(e) {
     console.log(e);
-    chrome.tabs.query({}, (tabs) => {
+    chrome.tabs.query({ url: "https://music.youtube.com/*" }, (tabs) => {
       let ytmTabs = tabs.filter((tab) => "url" in tab);
       console.log(ytmTabs);
 
@@ -20,7 +20,7 @@ function SongControls() {
   }
 
   function handleNext() {
-    chrome.tabs.query({}, (tabs) => {
+    chrome.tabs.query({ url: "https://music.youtube.com/*" }, (tabs) => {
       let ytmTabs = tabs.filter((tab) => "url" in tab);
       console.log(ytmTabs);
       chrome.tabs.sendMessage(ytmTabs[0].id, { message: "next-button" });
@@ -52,7 +52,7 @@ function SongControls() {
       </button>
       <button
         onClick={() => {
-          chrome.tabs.query({}, (tabs) => {
+          chrome.tabs.query({ url: "https://music.youtube.com/*" }, (tabs) => {
             let ytmTabs = tabs.filter((tab) => "url" in tab);
             console.log(ytmTabs);
             chrome.tabs.sendMessage(ytmTabs[0].id, { message: "rewind" });
@@ -66,7 +66,7 @@ function SongControls() {
       </button>
       <button
         onClick={() => {
-          chrome.tabs.query({}, (tabs) => {
+          chrome.tabs.query({ url: "https://music.youtube.com/*" }, (tabs) => {
             let ytmTabs = tabs.filter((tab) => "url" in tab);
             console.log(ytmTabs);
             chrome.tabs.sendMessage(ytmTabs[0].id, { message: "fast-forward" });

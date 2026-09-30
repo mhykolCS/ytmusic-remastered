@@ -39,7 +39,7 @@ function LikeButton() {
             },
           }}
           onClick={(e) => {
-            chrome.tabs.query({}, (tabs) => {
+            chrome.tabs.query({ url: "https://music.youtube.com/*" }, (tabs) => {
               let ytmTabs = tabs.filter((tab) => "url" in tab);
               console.log(ytmTabs);
               chrome.tabs.sendMessage(ytmTabs[0].id, { message: "like" });

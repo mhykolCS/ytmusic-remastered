@@ -1,4 +1,5 @@
 import MountWhenPlayerActive from "./MountWhenPlayerActive";
+import Ambient from "../Ambient/Ambient";
 import DataStoreSync from "../Extension/DataStoreSync";
 import Theme from "../Theme/Theme";
 import MediaObserver from "../Media/MediaObserver";
@@ -57,8 +58,6 @@ function ContentScript({ root }) {
         document.querySelector("video").currentTime -= 10;
       } else if (message.message === "fast-forward") {
         document.querySelector("video").currentTime += 10;
-      } else {
-        document.getElementById("play-pause-button").click();
       }
     });
   }, []);
@@ -67,6 +66,7 @@ function ContentScript({ root }) {
     <div id="ThemeSong-ContentScript">
       <Unmounter root={root} />
       <DataStoreSync />
+      <Ambient />
       <Theme />
       <LogoContainer />
       <Palette />

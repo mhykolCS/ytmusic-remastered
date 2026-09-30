@@ -1,6 +1,5 @@
 import { css } from "@emotion/react";
 import YtmIcon from "../../YtmLogo/YtmIcon";
-import ThemesongTextIcon from "./ThemesongTextIcon";
 import { BsReverseLayoutSidebarInsetReverse } from "react-icons/bs";
 import { useStore } from "/src/app/store";
 import useLocalization from "../../Extension/Localization/useLocalization";
@@ -10,7 +9,7 @@ function TopBar() {
   const getMessage = useLocalization();
 
   function handleYTMclick() {
-    chrome.tabs.query({}, (tabs) => {
+    chrome.tabs.query({ url: "https://music.youtube.com/*" }, (tabs) => {
       let ytmTabs = tabs.filter((tab) => "url" in tab);
       console.log(ytmTabs);
       if (ytmTabs.length === 0) {
@@ -68,7 +67,7 @@ function TopBar() {
             textDecoration: "none",
           }}
         >
-          <ThemesongTextIcon />
+          YTMusic Remastered
         </a>
       </h1>
       <div

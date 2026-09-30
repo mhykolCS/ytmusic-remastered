@@ -10,6 +10,8 @@ function DataStoreSync() {
   const mergePiecePrefs = useStore((state) => state.piece.mergePiecePrefs);
   const mergeUtilitiesPrefs = useStore((state) => state.utilities.mergeUtilitiesPrefs);
   const mergeMedia = useStore((state) => state.media.mergeMedia);
+  const mergeAmbientPrefs = useStore((state) => state.ambient.mergePrefs);
+  const setAmbientReady = useStore((state) => state.ambient.setReady);
 
   useEffect(() => {
     console.log("DataStoreSync");
@@ -38,6 +40,9 @@ function DataStoreSync() {
         case "media":
           mergeMedia(value);
           break;
+        case "remasteredAmbientPrefs":
+          mergeAmbientPrefs(value);
+          break;
         default:
           console.log("DataStoreSync: default case");
       }
@@ -49,16 +54,21 @@ function DataStoreSync() {
       for (let [key, value] of Object.entries(chromeStorageObj)) {
         handleKeyValueData(key, value);
       }
+      setAmbientReady();
     });
 
     //chrome storage listener
-    chrome.storage.onChanged.addListener((changes) => {
+    const onChanged = (changes, area) => {
+      if (area !== "local") return;
       for (let [key, { newValue }] of Object.entries(changes)) {
         console.log("chrome.storage changed. syncing data", { key, newValue });
         handleKeyValueData(key, newValue);
       }
-    });
-  });
+    };
+    chrome.storage.onChanged.addListener(onChanged);
+    return () => chrome.storage.onChanged.removeListener(onChanged);
+  }, [mergeThemePrefs, mergeVisualizerPrefs, mergePopupPrefs, mergeExtensionPrefs,
+    mergePiecePrefs, mergeUtilitiesPrefs, mergeMedia, mergeAmbientPrefs, setAmbientReady]);
 
   return null;
 }

@@ -1,6 +1,6 @@
 export const createExtensionSlice = (set, get) => ({
   prefs: {
-    showNewUserNote: true,
+    showNewUserNote: false,
     showUpdateNote: false,
     locale: "en",
     browser: "chrome",

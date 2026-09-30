@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import AmbientPanel from "../../Ambient/AmbientPanel";
 import { BiReset } from "react-icons/bi";
 import LocaleSettings from "../../Extension/Localization/LocaleSettings";
 import useLocalization from "../../Extension/Localization/useLocalization";
@@ -30,6 +31,8 @@ function SettingsPage() {
         {getMessage("settings")}
       </h1>
       <LocaleSettings />
+      <AmbientPanel />
+      <p><a href="/youtube/options.html" target="_blank" rel="noreferrer">YouTube ambient light options</a></p>
       <div
         css={css`
           padding: 10px;

@@ -1,0 +1,15 @@
+{
+  "name": "ytmusic-remastered",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ThemeSong and Ambient light, together for YouTube and YouTube Music.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "setup": "node tools/setup.mjs",
+    "build": "node tools/build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "preview": "node tools/preview-server.mjs"
+  },
+  "engines": { "node": ">=22.5.1" }
+}

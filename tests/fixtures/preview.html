@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en" dark>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YTMusic Remastered — renderer verification</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#101015;color:#eee;font:16px system-ui}ytmusic-app{display:block;min-height:100vh}header{height:70px;padding:22px 5%;border-bottom:1px solid #ffffff18;background:#090a11}header b{letter-spacing:1px}header span{float:right;color:#c6c9df;font-size:13px}main{padding:30px 5% 110px;display:grid;grid-template-columns: minmax(300px,1.2fr) minmax(320px,1fr);gap:6vw}ytmusic-player-page{display:contents}ytmusic-player{display:block;position:relative;aspect-ratio:1;max-width:640px;margin:28px auto}#song-image img,video{width:100%;height:100%;object-fit:cover;border-radius:16px}video{display:none;position:absolute;inset:0}ytmusic-player[playback-mode=OMV_PREFERRED] video{display:block}ytmusic-player[playback-mode=OMV_PREFERRED] #song-image{visibility:hidden}ytmusic-av-toggle{display:flex;justify-content:center;gap:6px}button{padding:10px 20px;border-radius:24px;border:1px solid #ffffff30;background:#ffffff14;color:white;cursor:pointer}button[aria-pressed=true]{background:#ffffffde;color:#141622}ytmusic-player-bar{position:fixed;bottom:0;left:0;right:0;height:80px;display:flex;align-items:center;gap:15px;padding:10px 5%;background:var(--ytmusic-player-bar-background,#111)}.thumbnail-image-wrapper img{width:54px;height:54px;border-radius:6px}.title{font-weight:600}.byline{font-size:13px;margin-top:4px}a{color:inherit}.suite{background:#11121baa;border:1px solid #ffffff20;border-radius:16px;padding:24px;margin-top:28px}.suite h2{font-size:21px;margin-top:0}.suite p{font-size:13px;color:#c7c9d6;line-height:1.6}#results{list-style:none;padding:0;font-size:14px;line-height:2.4}.pass{color:#a8e5c2}.fail{color:#ff96b2}label{display:flex;justify-content:space-between;gap:20px;font-size:14px;margin:18px 0}input{accent-color:#b9b4ff}#status{font-size:13px;color:#ccc}@media(max-width:750px){main{grid-template-columns:1fr}header span{display:none}}
+</style>
+<ytmusic-app>
+<header id="nav-bar-background"><b>YTMusic Remastered</b><span>Local renderer verification · synthetic media</span></header>
+<main><ytmusic-player-page id="player-page"><section>
+<ytmusic-av-toggle playback-mode="ATV_PREFERRED" selected-item-has-video selected-queue-item-has-counterpart>
+<button class="song-button" aria-pressed="true">Song</button><button class="video-button" aria-pressed="false">Video</button>
+</ytmusic-av-toggle>
+<ytmusic-player playback-mode="ATV_PREFERRED"><div id="song-image"><img src="/tests/fixtures/cover.svg" alt="Synthetic sunset album artwork"></div><video muted playsinline></video></ytmusic-player>
+</section><aside class="suite"><h2>Ambient light verification</h2><p>This page exercises the production Music renderer against Song/Video controls, decoded video frames and album artwork. It does not install an extension.</p><ul id="results"></ul><div id="status" role="status">Starting…</div><label>Enable ambient light<input id="enabled" type="checkbox" checked></label><label>Prefer video<input id="prefer" type="checkbox" checked></label><label>Intensity<input id="intensity" type="range" min="10" max="100" value="75"></label><button id="rerun">Run checks again</button></aside></ytmusic-player-page></main>
+<ytmusic-player-bar><div class="thumbnail-image-wrapper"><img src="/tests/fixtures/cover.svg" alt=""></div><div><div class="title">Synthetic sunset</div><div class="byline"><a href="#fixture-artist">Renderer test</a></div></div></ytmusic-player-bar>
+</ytmusic-app>
+<script type="module" src="/tests/fixtures/preview.mjs"></script>
+</html>

@@ -4,9 +4,9 @@ import handleOnMessage from "./handleOnMessage";
 chrome.runtime.onInstalled.addListener(handleOnInstalled);
 chrome.runtime.onMessage.addListener(handleOnMessage);
 chrome.notifications.onButtonClicked.addListener((notificationId, buttonIndex) => {
-  chrome.tabs.query({}, (tabs) => {
-    let ytmTabs = tabs.filter((tab) => "url" in tab);
+  chrome.tabs.query({ url: "https://music.youtube.com/*" }, (tabs) => {
+    let ytmTabs = tabs;
     console.log(ytmTabs);
-    chrome.tabs.sendMessage(ytmTabs[0].id, { message: "next-button" });
+    if (ytmTabs[0]) chrome.tabs.sendMessage(ytmTabs[0].id, { message: "next-button" });
   });
 });
